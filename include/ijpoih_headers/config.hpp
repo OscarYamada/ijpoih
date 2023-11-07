@@ -28,34 +28,3 @@ extern pros::Motor RTB;
 extern pros::MotorGroup LeftSide;
 extern pros::MotorGroup RightSide;
 
-// structs
-namespace lemlib {
-    struct Drivetrain_t;
-    struct TrackingWheel;
-    struct OdomSensors_t;
-    struct ChassisController_t;
-    class Chassis;
-}
-
-// lemlib drivetrain motors setup
-extern lemlib::Drivetrain_t drivetrain;
-
-// Odometry Section
-extern pros::ADIEncoder left_enc;
-extern pros::Rotation right_rot;
-extern pros::ADIEncoder back_enc;
-
-extern lemlib::TrackingWheel left_tracking_wheel;
-extern lemlib::TrackingWheel right_tracking_wheel;
-extern lemlib::TrackingWheel back_tracking_wheel;
-
-// odometry struct
-extern lemlib::OdomSensors_t sensors;
-
-// PID Section
-extern lemlib::ChassisController_t lateralController;
-extern lemlib::ChassisController_t angularController;
-
-// create the chassis
-extern lemlib::Chassis chassis;
-
