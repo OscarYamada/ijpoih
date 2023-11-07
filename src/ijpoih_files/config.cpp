@@ -1,5 +1,7 @@
 #include "main.h"
 
+
+
 //Must Mirror motor_config.hpp
 pros::Controller controller (pros::E_CONTROLLER_MASTER);
 pros::Imu inertial(16);
@@ -34,16 +36,16 @@ lemlib::Drivetrain_t drivetrain {
 //Odometry Section
 
 // left tracking wheel encoder
-pros::ADIEncoder left_enc('A', 'B', true); // ports A and B, reversed
+pros::Rotation left_rot(3, true); // ports A and B, reversed
 // right tracking wheel encoder
 pros::Rotation right_rot(1, false); // port 1, not reversed
 // back tracking wheel encoder
-pros::ADIEncoder back_enc('C', 'D', false); // ports C and D, not reversed
+pros::Rotation back_rot(2, false); // ports C and D, not reversed
  
 // Tracking Wheel Objects
-lemlib::TrackingWheel left_tracking_wheel(&left_enc, 2.75, -4.6); // 2.75" wheel diameter, -4.6" offset from tracking cente
-lemlib::TrackingWheel right_tracking_wheel(&right_rot, 2.75, 1.7); // 2.75" wheel diameter, 1.7" offset from tracking center
-lemlib::TrackingWheel back_tracking_wheel(&back_enc, 2.75, -4.5); // 2.75" wheel diameter, 4.5" offset from tracking center
+lemlib::TrackingWheel left_tracking_wheel(&left_enc, 3.25, -4.6); // 2.75" wheel diameter, -4.6" offset from tracking cente
+lemlib::TrackingWheel right_tracking_wheel(&right_rot, 3.25, 1.7); // 2.75" wheel diameter, 1.7" offset from tracking center
+lemlib::TrackingWheel back_tracking_wheel(&back_enc, 3.25, -4.5); // 2.75" wheel diameter, 4.5" offset from tracking center
  
 
 // odometry struct
