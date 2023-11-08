@@ -26,8 +26,8 @@ void initialize() {
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello 9594J!");
 
-	leftSide.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-	rightSide.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	leftSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST);
+	rightSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST);
 	intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
@@ -81,23 +81,10 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	config();
-
 	while (true) {
-
-		//Drive functions
-		setDriveMotors();
-
-		//Intake functions
-		setIntakeMotors();
-
-        //OpControl Functions Here
-        LeftSide.move(master.get_analog(ANALOG_LEFT_Y));
-        RightSide.move(master.get_analog(ANALOG_RIGHT_Y));
 
 
         //2msec Delay for Refresh Rate
         pros::delay(2);
   }
-
 }

@@ -6,7 +6,7 @@ void resetDriveEncoders();
 double avgDriveEncoderValue();
 
 //DRIVER CONTROL FUNCTIONS
-void setDriveMoters();
+void setDriveMotors();
 
 //AUTONOMOUS FUNCTIONS
 void translate(int units, int voltage);
