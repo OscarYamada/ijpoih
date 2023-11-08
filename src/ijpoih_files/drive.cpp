@@ -21,20 +21,19 @@ double avgDriveEncoderValue(){
 void setDriveMoters(){
     int leftJoystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int rightJoystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-    if (abs(leftJoystick) < 15)
+    if (abs(leftJoystick) < 10)
         leftJoystick = 0;
-    if (abs(rightJoystick) < 15)
+    if (abs(rightJoystick) < 10)
         rightJoystick = 0;
     void setDrive(leftJoystick, rightJoystick);
 }
 
 //AUTONOMOUS FUNCTIONS
 void translate(int units, int voltage){
-    int directoin = abs(units)/units;
+    int direction = abs(units)/units;
     //reset motor encoders
     resetDriveEncoders();
     //dirve forward unitl units are reached
-
     while(fabs(leftSide.get_position()) < abs(units)){
         setdrive(voltage * direction, voltage * direction);
         pros::delay(10);

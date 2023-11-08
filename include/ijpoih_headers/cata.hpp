@@ -1,18 +1,10 @@
 #include "main.h"
 
 // Helper Function
-void setCata(int power){
-    cata = power;
-}
+void setCata(int power);
 
-// Driver Control Functions
-void setCataShoot{
-    // Hold keeps cata spinning, letting go keeps spinning until the arm goes
-    while(controller.get_digital)
-}
+// Driver Control Functions - Fire Function
+void setCataShoot();
 
-void setCataBlockIntake{
-    if(controller.get_digital((pros::E_CONTROLLER_DIGITAL_L2))){
-        dddddd
-    }
-}
+// Driver Control Functions - Intake Block
+void setCataBlockIntake();
