@@ -23,12 +23,15 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello 9594J!");
+	pros::lcd::initialize(); // initialize brain screen
+    chassis.calibrate(); // calibrate the chassis
+    pros::Task screenTask(screen); // create a task to print the position to the screen
 
-	leftSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST);
-	rightSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST);
-	intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	// Set Brake Modes
+	leftSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST); // Set brake to coast on left side of Drivetrain
+	rightSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST); // Set brake to coast on right side of Drivetrain
+	intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD); // For some reason, hold and brake have different setbrake functions
+	cata.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD); // Brake hold on intake and cata
 }
 
 /**
@@ -82,10 +85,19 @@ void autonomous() {
  */
 void opcontrol() {
 	while (true) {
+		// Drive, Intake, and Cata functions from the different cpp files
 		setDriveMotors();
 		setIntakeMotors();
 		setCataShoot();
 		setCataBlockIntake();
+
+		// Display Pose on Brain
+		lemlib::Pose pose = chassis.getPose(); // get the current position of the robot
+        pros::lcd::print(0, "x: %f", pose.x); // print the x position
+        pros::lcd::print(1, "y: %f", pose.y); // print the y position
+        pros::lcd::print(2, "heading: %f", pose.theta); // print the heading
+        pros::delay(10);
+
         //2msec Delay for Refresh Rate
         pros::delay(2);
   }
