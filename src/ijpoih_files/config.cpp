@@ -21,6 +21,8 @@ pros::Motor RTB (14, E_MOTOR_GEARSET_18, true, E_MOTOR_ENCODER_DEGREES);
 pros::MotorGroup LeftSide({LFM, LBB, LTB});
 pros::MotorGroup RightSide({RFM, RBB, RTB});
 
+//Rotation Sensors (detached from lemlib)
+pros::Rotation cata_rot(1, false);
 
 // lemlib drivetrain motors setup
 

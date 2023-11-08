@@ -21,12 +21,12 @@ extern pros::Motor RFM;
 extern pros::Motor RBB;
 extern pros::Motor RTB;
 
-//Miscellaneous Section
-
-
 // Motor Group Headers
 extern pros::MotorGroup LeftSide;
 extern pros::MotorGroup RightSide;
+
+//Miscellaneous Section
+extern pros::Rotation cata_rot;
 
 // Lemlib Drivetrain Header
 extern lemlib::Drivetrain drivetrain;

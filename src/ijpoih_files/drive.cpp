@@ -7,6 +7,15 @@ void setDrive(int left, int right){
     RightSide = right;
 }
 
+void resetDriveEncoders(){
+    leftSide.tare_position();
+    rightSide.tare_position();
+}
+
+double avgDriveEncoderValue(){
+    return (fabs(leftSide.get_position()) + fabs(rightSide.get_position()))/2
+}
+
 //DRIVER CONTROL FUNCTIONS
 
 void setDriveMoters(){
@@ -17,4 +26,25 @@ void setDriveMoters(){
     if (abs(rightJoystick) < 15)
         rightJoystick = 0;
     void setDrive(leftJoystick, rightJoystick);
+}
+
+//AUTONOMOUS FUNCTIONS
+void translate(int units, int voltage){
+    int directoin = abs(units)/units;
+    //reset motor encoders
+    resetDriveEncoders();
+    //dirve forward unitl units are reached
+
+    while(fabs(leftSide.get_position()) < abs(units)){
+        setdrive(voltage * direction, voltage * direction);
+        pros::delay(10);
+    }
+
+    //brief brake
+
+    setDrive(-10* direction, -10 * direction);
+    pros::delay(50);
+
+    //set drive back to neutral
+    setDrive(0,0);
 }
