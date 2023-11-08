@@ -22,14 +22,14 @@ extern pros::Motor RBB;
 extern pros::Motor RTB;
 
 // Motor Group Headers
-extern pros::MotorGroup LeftSide;
-extern pros::MotorGroup RightSide;
+extern pros::MotorGroup leftSide;
+extern pros::MotorGroup rightSide;
 
 //Miscellaneous Section
 extern pros::Rotation cata_rot;
 
 // Lemlib Drivetrain Header
-extern lemlib::Drivetrain drivetrain;
+extern lemlib::Drivetrain_t drivetrain;
 
 // Odom Pod Encoder Headers
 extern pros::Rotation left_rot;

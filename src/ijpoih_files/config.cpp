@@ -1,25 +1,23 @@
 #include "main.h"
 
-
-
 //Must Mirror motor_config.hpp
 pros::Controller controller (pros::E_CONTROLLER_MASTER);
 pros::Imu inertial(16);
 
-pros::Motor intake (20, E_MOTOR_GEARSET_06, false, E_MOTOR_ENCODER_DEGREES);
-pros::Motor cata (11, E_MOTOR_GEARSET_36, false, E_MOTOR_ENCODER_DEGREES);
+pros::Motor intake (20, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor cata (11, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
 
-pros::Motor LFM (19, E_MOTOR_GEARSET_18, false, E_MOTOR_ENCODER_DEGREES);
-pros::Motor LBB (17, E_MOTOR_GEARSET_18, true, E_MOTOR_ENCODER_DEGREES);
-pros::Motor LTB (18, E_MOTOR_GEARSET_18, false, E_MOTOR_ENCODER_DEGREES);
+pros::Motor LFM (19, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor LBB (17, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor LTB (18, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
-pros::Motor RFM (12, E_MOTOR_GEARSET_18, true, E_MOTOR_ENCODER_DEGREES);
-pros::Motor RBB (13, E_MOTOR_GEARSET_18, false, E_MOTOR_ENCODER_DEGREES);
-pros::Motor RTB (14, E_MOTOR_GEARSET_18, true, E_MOTOR_ENCODER_DEGREES);
+pros::Motor RFM (12, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor RBB (13, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor RTB (14, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 
 //Motor Groups
-pros::MotorGroup LeftSide({LFM, LBB, LTB});
-pros::MotorGroup RightSide({RFM, RBB, RTB});
+pros::MotorGroup leftSide({LFM, LBB, LTB});
+pros::MotorGroup rightSide({RFM, RBB, RTB});
 
 //Rotation Sensors (detached from lemlib)
 pros::Rotation cata_rot(1, false);
@@ -27,8 +25,8 @@ pros::Rotation cata_rot(1, false);
 // lemlib drivetrain motors setup
 
 lemlib::Drivetrain_t drivetrain {
-    &LeftSide, // left drivetrain motors
-    &RightSide, // right drivetrain motors
+    &leftSide, // left drivetrain motors
+    &rightSide, // right drivetrain motors
     11.5, // track width
     3.25, // wheel diameter
     400 // wheel rpm
@@ -45,9 +43,9 @@ pros::Rotation right_rot(1, false); // port 1, not reversed
 pros::Rotation back_rot(2, false); // ports C and D, not reversed
  
 // Tracking Wheel Objects
-lemlib::TrackingWheel left_tracking_wheel(&left_enc, 3.25, -4.6); // 2.75" wheel diameter, -4.6" offset from tracking cente
+lemlib::TrackingWheel left_tracking_wheel(&left_rot, 3.25, -4.6); // 2.75" wheel diameter, -4.6" offset from tracking cente
 lemlib::TrackingWheel right_tracking_wheel(&right_rot, 3.25, 1.7); // 2.75" wheel diameter, 1.7" offset from tracking center
-lemlib::TrackingWheel back_tracking_wheel(&back_enc, 3.25, -4.5); // 2.75" wheel diameter, 4.5" offset from tracking center
+lemlib::TrackingWheel back_tracking_wheel(&back_rot, 3.25, -4.5); // 2.75" wheel diameter, 4.5" offset from tracking center
  
 
 // odometry struct
