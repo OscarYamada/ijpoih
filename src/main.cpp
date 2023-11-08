@@ -82,8 +82,10 @@ void autonomous() {
  */
 void opcontrol() {
 	while (true) {
-
-
+		setDriveMotors();
+		setIntakeMotors();
+		setCataShoot();
+		setCataBlockIntake();
         //2msec Delay for Refresh Rate
         pros::delay(2);
   }
