@@ -75,6 +75,10 @@ void opcontrol() {
 	config();
 
 	while (true) {
+
+		//Drive functions
+		setDriveMotors();
+
         //OpControl Functions Here
         LeftSide.move(master.get_analog(ANALOG_LEFT_Y));
         RightSide.move(master.get_analog(ANALOG_RIGHT_Y));
