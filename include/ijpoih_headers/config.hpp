@@ -1,11 +1,10 @@
 #include "main.h"
 
-//Cable Sensors and Controller Headers
+//Controller and Brain Headers
 extern pros::Controller controller;
+
+//Sensor Headers
 extern pros::Imu inertial;
-
-//3-Wire Sensor Headers
-
 
 //Other Motor Headers
 extern pros::Motor intake;

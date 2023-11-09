@@ -29,7 +29,8 @@ lemlib::Drivetrain_t drivetrain {
     &rightSide, // right drivetrain motors
     11.5, // track width
     3.25, // wheel diameter
-    400 // wheel rpm
+    400, // wheel rpm
+    8 // Chase power. 8 if traction, 2 if not.
 };
  
 
