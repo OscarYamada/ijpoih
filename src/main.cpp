@@ -25,6 +25,7 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate the chassis
+	chassis.setPose(0, 0, 0); // X: 0, Y: 0, Heading: 0
     pros::Task screenTask(screen); // create a task to print the position to the screen
 
 	// Set Brake Modes
@@ -50,7 +51,9 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {}
+void competition_initialize() {
+	
+}
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -65,9 +68,41 @@ void competition_initialize() {}
  */
 void autonomous() {
 	// blueRightCorner();
+	// file name: path.txt
+    // timeout: 2000 ms
+    // lookahead distance: 15 inches
+    chassis.follow("path.txt", 2000, 15);
+    // follow the next path, but with the robot going backwards
+    chassis.follow("path2.txt", 2000, 15, true);
+
+
 	// blueLeftCorner();
+	// file name: path.txt
+    // timeout: 2000 ms
+    // lookahead distance: 15 inches
+    chassis.follow("path.txt", 2000, 15);
+    // follow the next path, but with the robot going backwards
+    chassis.follow("path2.txt", 2000, 15, true);
+
+
 	// redRightCorner();
+	// file name: path.txt
+    // timeout: 2000 ms
+    // lookahead distance: 15 inches
+    chassis.follow("path.txt", 2000, 15);
+    // follow the next path, but with the robot going backwards
+    chassis.follow("path2.txt", 2000, 15, true);
+
+
 	// redLeftCorner();
+	// file name: path.txt
+    // timeout: 2000 ms
+    // lookahead distance: 15 inches
+    chassis.follow("path.txt", 2000, 15);
+    // follow the next path, but with the robot going backwards
+    chassis.follow("path2.txt", 2000, 15, true);
+
+
 }
 
 /**
