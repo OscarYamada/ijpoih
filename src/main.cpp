@@ -26,7 +26,6 @@ void initialize() {
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate the chassis
 	chassis.setPose(0, 0, 0); // X: 0, Y: 0, Heading: 0
-    pros::Task screenTask(screen); // create a task to print the position to the screen
 
 	// Set Brake Modes
 	leftSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST); // Set brake to coast on left side of Drivetrain
@@ -67,40 +66,7 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-	// blueRightCorner();
-	// file name: path.txt
-    // timeout: 2000 ms
-    // lookahead distance: 15 inches
-    chassis.follow("path.txt", 2000, 15);
-    // follow the next path, but with the robot going backwards
-    chassis.follow("path2.txt", 2000, 15, true);
 
-
-	// blueLeftCorner();
-	// file name: path.txt
-    // timeout: 2000 ms
-    // lookahead distance: 15 inches
-    chassis.follow("path.txt", 2000, 15);
-    // follow the next path, but with the robot going backwards
-    chassis.follow("path2.txt", 2000, 15, true);
-
-
-	// redRightCorner();
-	// file name: path.txt
-    // timeout: 2000 ms
-    // lookahead distance: 15 inches
-    chassis.follow("path.txt", 2000, 15);
-    // follow the next path, but with the robot going backwards
-    chassis.follow("path2.txt", 2000, 15, true);
-
-
-	// redLeftCorner();
-	// file name: path.txt
-    // timeout: 2000 ms
-    // lookahead distance: 15 inches
-    chassis.follow("path.txt", 2000, 15);
-    // follow the next path, but with the robot going backwards
-    chassis.follow("path2.txt", 2000, 15, true);
 
 
 }
