@@ -84,6 +84,7 @@ void opcontrol(void);
 #include "ijpoih_headers/config.hpp"
 #include "ijpoih_headers/drive.hpp"
 #include "ijpoih_headers/intake.hpp"
+#include "ijpoih_headers/startscreen.hpp"
 
 //#include <iostream>
 #endif

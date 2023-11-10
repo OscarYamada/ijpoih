@@ -1,4 +1,6 @@
 #include "main.h"
+#include "lemlib/api.hpp"
+ASSET(path_txt);
 
 /**
  * A callback function for LLEMU's center button.
@@ -66,9 +68,9 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-
-
-
+	chassis.follow(path_txt, 2000, 15);
+    // follow the next path, but with the robot going backwards
+    chassis.follow(path_txt, 2000, 15, true);
 }
 
 /**
@@ -91,13 +93,6 @@ void opcontrol() {
 		setIntakeMotors();
 		setCataShoot();
 		setCataBlockIntake();
-
-		// Display Pose on Brain
-		lemlib::Pose pose = chassis.getPose(); // get the current position of the robot
-        pros::lcd::print(0, "x: %f", pose.x); // print the x position
-        pros::lcd::print(1, "y: %f", pose.y); // print the y position
-        pros::lcd::print(2, "heading: %f", pose.theta); // print the heading
-        pros::delay(10);
 
         //2msec Delay for Refresh Rate
         pros::delay(2);
