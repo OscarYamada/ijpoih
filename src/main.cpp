@@ -1,6 +1,9 @@
 #include "main.h"
 #include "lemlib/api.hpp"
-ASSET(path_txt);
+ASSET(offenseside1_txt);
+ASSET(offenseside2_txt);
+ASSET(offenseside3_txt);
+ASSET(offenseside4_txt);
 
 /**
  * A callback function for LLEMU's center button.
@@ -68,9 +71,13 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-	chassis.follow(path_txt, 2000, 15);
-    // follow the next path, but with the robot going backwards
-    chassis.follow(path_txt, 2000, 15, true);
+	chassis.follow(offenseside1_txt, 2000, 15);
+	// chassis.follow(offenseside2_txt, 2000, 15, true);
+	// chassis.follow(offenseside3_txt, 2000, 15);
+	// chassis.follow(offenseside4_txt, 2000, 15, true);
+	// chassis.follow(offenseside5_txt, 2000, 15);
+
+
 }
 
 /**
