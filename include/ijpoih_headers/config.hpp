@@ -1,10 +1,9 @@
 #include "main.h"
 
-//Controller and Brain Headers
+//Controller and Sensors Headers
 extern pros::Controller controller;
-
-//Sensor Headers
 extern pros::Imu inertial;
+extern pros::Imu catainertial;
 
 //Other Motor Headers
 extern pros::Motor intake;
@@ -23,9 +22,6 @@ extern pros::Motor RTB;
 // Motor Group Headers
 extern pros::MotorGroup leftSide;
 extern pros::MotorGroup rightSide;
-
-//Miscellaneous Section
-extern pros::Rotation cata_rot;
 
 // Lemlib Drivetrain Header
 extern lemlib::Drivetrain_t drivetrain;
