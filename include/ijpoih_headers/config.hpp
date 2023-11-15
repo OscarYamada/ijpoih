@@ -34,15 +34,17 @@ extern pros::MotorGroup rightSide;
 // Lemlib Drivetrain Header
 extern lemlib::Drivetrain_t drivetrain;
 
-// Odom Pod Encoder Headers
-extern pros::Rotation left_rot;
-extern pros::Rotation right_rot;
-extern pros::Rotation back_rot;
+// // Odom Pod Encoder Headers
+// extern pros::Rotation left_rot;
+// extern pros::Rotation right_rot;
+// extern pros::Rotation back_rot;
 
-// Tracking Wheel Headers
-extern lemlib::TrackingWheel left_tracking_wheel;
-extern lemlib::TrackingWheel right_tracking_wheel;
-extern lemlib::TrackingWheel back_tracking_wheel;
+// // Tracking Wheel Headers
+// extern lemlib::TrackingWheel left_tracking_wheel;
+// extern lemlib::TrackingWheel right_tracking_wheel;
+// extern lemlib::TrackingWheel back_tracking_wheel;
+
+// Odometry struct Heading
 extern lemlib::OdomSensors_t sensor;
 
 // Chassis Headers

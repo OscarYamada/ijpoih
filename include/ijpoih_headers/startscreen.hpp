@@ -1,3 +1,3 @@
 #include "main.h"
 
-void setUp();
+void screenSetup();

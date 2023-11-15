@@ -57,6 +57,9 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
+
+	on_center_button();
+	screenSetup();
 	
 }
 
