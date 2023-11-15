@@ -4,6 +4,7 @@ ASSET(offenseside1_txt);
 ASSET(offenseside2_txt);
 ASSET(offenseside3_txt);
 ASSET(offenseside4_txt);
+ASSET(offenseside5_txt);
 
 /**
  * A callback function for LLEMU's center button.
@@ -71,11 +72,56 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
+	// 2000 is the interval the follow lasts for. change it accordingly
+	// to the autonomous.
+	// also, lookahead distance, look into that, but it's probably not
+	// important right now. save it for when we tune auton.
+
+
+	pros::millis(); //set time to 0
+
+	//PATH 1:
 	chassis.follow(offenseside1_txt, 2000, 15);
-	// chassis.follow(offenseside2_txt, 2000, 15, true);
-	// chassis.follow(offenseside3_txt, 2000, 15);
-	// chassis.follow(offenseside4_txt, 2000, 15, true);
-	// chassis.follow(offenseside5_txt, 2000, 15);
+	// intake for grabbing triball
+	chassis.waitUntilDist(10);
+	intakeDeploy(true);
+	// wings open after grabbing first triball
+	pros::delay(1000);
+	wingsDeploy(true);
+	chassis.waitUntilDist(10000);
+	wingsDeploy(false);
+
+	//PATH 2:
+	chassis.follow(offenseside2_txt, 2000, 15, true);
+	//180 degree turn
+	chassis.waitUntilDist(10000);
+	chassis.turnTo(-26, 0, 1000, 200);
+
+	//PATH 3:
+	chassis.follow(offenseside3_txt, 2000, 15);
+	//intake to pick up triball
+	chassis.waitUntilDist(10);
+	intakeDeploy(false);
+	//intake for putting down triball
+	chassis.waitUntilDist(20);
+	intakeDeploy(true);
+	// add async for grabbing triball underneath the hang
+	chassis.waitUntilDist(10000);
+	intakeDeploy(true);
+
+	//PATH 4:
+	chassis.follow(offenseside4_txt, 2000, 15, true);
+	//180 degree turn
+	chassis.waitUntilDist(10000);
+	chassis.turnTo(-10, 60, 1000, 200);
+
+	//PATH 5:
+	chassis.follow(offenseside5_txt, 2000, 15);
+	pros::delay(1000);
+	intakeDeploy(true);
+	// then it goes 3 into the goal rite
+
+	//turn heading
 
 
 }

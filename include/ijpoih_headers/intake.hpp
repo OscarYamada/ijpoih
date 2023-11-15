@@ -5,3 +5,6 @@ void setIntake(int left, int right);
 
 //INTAKE DRIVER FUNCTIONS
 void setIntakeMotors();
+
+//INTAKE AUTONOMOUS FUNCTIONS
+void intakeDeploy(bool dir);

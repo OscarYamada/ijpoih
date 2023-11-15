@@ -5,7 +5,15 @@
 // Controller and Sensors
 pros::Controller controller (pros::E_CONTROLLER_MASTER);
 pros::Imu inertial(16);
-pros::Imu catainertial(17);
+pros::Rotation cata_rot(4, true);
+
+// Pneumatics and 3Wire
+pros::ADIDigitalOut left_wing ('A'); 
+pros::ADIDigitalOut right_wing ('B');
+pros::ADIDigitalOut left_intake ('C');
+pros::ADIDigitalOut right_intake ('D');
+pros::ADIDigitalOut left_blocker ('E');
+pros::ADIDigitalOut right_blocker ('F');
 
 // Cata and Intake
 pros::Motor intake (14, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);

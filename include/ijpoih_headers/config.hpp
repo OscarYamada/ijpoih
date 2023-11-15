@@ -3,7 +3,15 @@
 //Controller and Sensors Headers
 extern pros::Controller controller;
 extern pros::Imu inertial;
-extern pros::Imu catainertial;
+extern pros::Rotation cata_rot;
+
+//Pneumatics and 3Wire Headers
+extern pros::ADIDigitalOut left_wing;
+extern pros::ADIDigitalOut right_wing;
+extern pros::ADIDigitalOut left_intake;
+extern pros::ADIDigitalOut right_intake;
+extern pros::ADIDigitalOut left_blocker;
+extern pros::ADIDigitalOut right_blocker;
 
 //Other Motor Headers
 extern pros::Motor intake;
