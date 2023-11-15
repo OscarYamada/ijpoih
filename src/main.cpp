@@ -80,6 +80,7 @@ void autonomous() {
 
 	pros::millis(); //set time to 0
 
+	// Offense Auto (all triball + under hang + enemy matchload)
 	//PATH 1:
 	chassis.follow(offenseside1_txt, 2000, 15);
 	// intake for grabbing triball
@@ -113,7 +114,7 @@ void autonomous() {
 	chassis.follow(offenseside4_txt, 2000, 15, true);
 	//180 degree turn
 	chassis.waitUntilDist(10000);
-	chassis.turnTo(-10, 60, 1000, 200);
+	chassis.turnTo(-30, 60, 1000, 200);
 
 	//PATH 5:
 	chassis.follow(offenseside5_txt, 2000, 15);
@@ -121,7 +122,13 @@ void autonomous() {
 	intakeDeploy(true);
 	// then it goes 3 into the goal rite
 
-	//turn heading
+	//PATH 6:
+	chassis.follow(offenseside5_txt, 2000, 15, true);
+	//turn 180 degrees to hang
+	chassis.turnTo(-10, 60, 1000, 200);
+	//Touch intake to hang
+	chassis.follow(offenseside4_txt, 2000, 15);
+
 
 
 }
