@@ -4,7 +4,7 @@
 
 // Controller and Sensors
 pros::Controller controller (pros::E_CONTROLLER_MASTER);
-pros::Imu inertial(16);
+pros::Imu inertial(17);
 pros::Rotation cata_rot(4, true);
 
 // Pneumatics and 3Wire
@@ -20,7 +20,7 @@ pros::Motor intake (14, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_D
 pros::Motor cata (15, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Motors Left Side (right, front/bottom/top, middle/back)
-pros::Motor LFM (20, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor LFM (20, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor LBB (19, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor LTB (18, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 
@@ -76,8 +76,7 @@ lemlib::ChassisController_t lateralController {
     8, // kP
     30, // kD
     1, // smallErrorRange
-    100, // smallErrorTimeout
-    3, // largeErrorRange
+        3, // largeErrorRange
     500, // largeErrorTimeout
     5 // slew rate
 };
