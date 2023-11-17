@@ -26,7 +26,7 @@ void setCataShoot(){
 void setCataBlockIntake(){
     if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)){
         // While rotation sensor is below 45 degrees
-        while(cata_rot.get_position() > 5000 && cata_rot.get_position() < 6000){
+        while(!(cata_rot.get_position() > 5000 && cata_rot.get_position() < 6000)){
             setCata(127);
         }
         setCata(0);
