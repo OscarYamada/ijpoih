@@ -31,7 +31,7 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate the chassis
-	chassis.setPose(0, 0, 0); // X: 0, Y: 0, Heading: 0
+	chassis.setPose(0, 0, 0); // X: -33, Y: 54, Heading: 180
 
 	// Set Brake Modes
 	leftSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST); // Set brake to coast on left side of Drivetrain
@@ -85,18 +85,22 @@ void autonomous() {
 
 	// Offense Auto (all triball + under hang + enemy matchload)
 	//PATH 1:
-	chassis.follow(offenseside1_txt, 2000, 15);
+	chassis.follow(offenseside1_txt, 2100, 5);
+
 	// intake for grabbing triball
 	chassis.waitUntilDist(10);
 	intakeDeploy(true);
+
 	// wings open after grabbing first triball
-	pros::delay(1000);
+	chassis.waitUntilDist(15);
 	wingsDeploy(true);
-	chassis.waitUntilDist(10000);
+
+	// wings close after pushing in first triball
+	chassis.waitUntilDist(20);
 	wingsDeploy(false);
 
 	//PATH 2:
-	chassis.follow(offenseside2_txt, 2000, 15, true);
+	chassis.follow(offenseside2_txt, 5000, 15, true);
 	//180 degree turn
 	chassis.waitUntilDist(10000);
 	chassis.turnTo(-26, 0, 1000, 200);
@@ -155,9 +159,8 @@ void opcontrol() {
 		setDriveMotors();
 		setIntakeMotors();
 		setCataShoot();
-		setCataBlockIntake();
 
         //2msec Delay for Refresh Rate
-        pros::delay(2);
+        pros::delay(8);
   }
 }
