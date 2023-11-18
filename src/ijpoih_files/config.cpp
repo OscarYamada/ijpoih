@@ -5,7 +5,7 @@
 // Controller and Sensors
 pros::Controller controller (pros::E_CONTROLLER_MASTER);
 pros::Imu inertial(17);
-pros::Rotation cata_rot(4, true);
+pros::Rotation cata_rot(16);
 
 // Pneumatics and 3Wire
 pros::ADIDigitalOut wings ('G'); 

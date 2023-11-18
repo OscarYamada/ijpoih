@@ -1,17 +1,8 @@
 #include "main.h"
 #include "lemlib/api.hpp"
 
-ASSET(offenseside1_txt);
-ASSET(offenseside2_txt);
-ASSET(offenseside3_txt);
-ASSET(offenseside4_txt);
-ASSET(offenseside5_txt);
-ASSET(offenseside6_txt);
-ASSET(offenseside7_txt);
-
-ASSET(defenceside2_txt);
-ASSET(defenceside3_txt);
-ASSET(defenceside4_txt);
+ASSET(offense1_txt);
+ASSET(offense2_txt);
 
 bool wingsTrue = false;
 bool blockerTrue = false;
@@ -41,8 +32,8 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate the chassis
-	// chassis.setPose(-33, 54, 180); // X: -33, Y: 54, Heading: 180
-	chassis.setPose(-30,-60, 4.712);
+	chassis.setPose(-33, 54, 3.1415); // X: -33, Y: 54, Heading: 180
+	// chassis.setPose(-33,45, 4.712);
 
 	// Set Brake Modes
 	leftSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST); // Set brake to coast on left side of Drivetrain
@@ -86,16 +77,9 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-	// 2000 is the interval the follow lasts for. change it accordingly
-	// to the autonomous.
-	// also, lookahead distance, look into that, but it's probably not
-	// important right now. save it for when we tune auton.
 
 	pros::millis(); //set time to 0
 	blockerDeploy(true);
-
-	turn(150, 180, 20);
-
 	//defence side code
 	// chassis.follow(defenceside2_txt, 1000, 10, false, true);
 	// wingsDeploy(true);
@@ -103,14 +87,17 @@ void autonomous() {
 	// chassis.follow(defenceside4_txt, 1000, 15, false, true);
 
 	//offense side code
-	// chassis.follow(offenseside1_txt, 3200, 15, true);
-	// pros::delay(1700);
-	// intakeDeploy(true);
-	// pros::delay(1700);
-	// chassis.moveTo(-12, 11, 2.15, 1000);
-	// intakeDeploy(false);
-	// wingsDeploy(true);
-	// chassis.follow(offenseside2_txt, 1500, 10, false);
+	goForward(-100);
+
+	//offensive side lemlib code
+	chassis.follow(offense1_txt, 1000, 20, true);
+	pros::delay(1700);
+	intakeDeploy(true);
+	pros::delay(1700);
+	intakeDeploy(false);
+	wingsDeploy(true);
+	chassis.turnTo(-12,4, 1000, false);
+	chassis.follow(offense2_txt, 1500, 10, false);
 	
 	
 	// pros::millis(); //set time to 0

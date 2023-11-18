@@ -25,3 +25,8 @@ void turn(float lowerbound, float upperbound, int leftpower){
         pros::delay(5);
     }
 }
+
+void goForward(int dis){
+    leftSide.move_absolute(dis, 200);
+    rightSide.move_absolute(dis, 200);
+}
