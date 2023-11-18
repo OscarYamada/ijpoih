@@ -8,16 +8,13 @@ void setCata(int power){
 // Driver Control Functions - Fire Function
 void setCataShoot(){
     // Hold keeps cata spinning, letting go keeps spinning until the arm goes
-    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)){
+    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+        setCata(127);
+    }
+    else if(cata_rot.get_angle() < 50 || cata_rot.get_angle() > 340){
         setCata(127);
     }
     else{
-        // While Cata rotation sensor is below 60 degrees, it spins
-        if(cata_rot.get_position() < 60){
-            setCata(0);
-        }
-        else{
-            setCata(0);
-        }
+        setCata(0);
     }
 }

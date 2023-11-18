@@ -9,7 +9,9 @@ ASSET(offenseside5_txt);
 ASSET(offenseside6_txt);
 ASSET(offenseside7_txt);
 
-ASSET(defenceside1_txt);
+ASSET(defenceside2_txt);
+ASSET(defenceside3_txt);
+ASSET(defenceside4_txt);
 
 bool wingsTrue = false;
 bool blockerTrue = false;
@@ -39,7 +41,8 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate the chassis
-	chassis.setPose(-33, 54, 180); // X: -33, Y: 54, Heading: 180
+	// chassis.setPose(-33, 54, 180); // X: -33, Y: 54, Heading: 180
+	chassis.setPose(-30,-60, 4.712);
 
 	// Set Brake Modes
 	leftSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST); // Set brake to coast on left side of Drivetrain
@@ -89,7 +92,17 @@ void autonomous() {
 	// important right now. save it for when we tune auton.
 
 	pros::millis(); //set time to 0
+	blockerDeploy(true);
 
+	turn(150, 180, 20);
+
+	//defence side code
+	// chassis.follow(defenceside2_txt, 1000, 10, false, true);
+	// wingsDeploy(true);
+	// chassis.follow(defenceside3_txt, 1000, 10, false, false);
+	// chassis.follow(defenceside4_txt, 1000, 15, false, true);
+
+	//offense side code
 	// chassis.follow(offenseside1_txt, 3200, 15, true);
 	// pros::delay(1700);
 	// intakeDeploy(true);
@@ -128,9 +141,6 @@ void autonomous() {
 	
 	// chassis.follow(offenseside7_txt, 1000, 15, true);
 
-	wingsDeploy(true);
-	chassis.follow(defenceside1_txt, 10000, 5, true, false);
-
 
 }
 
@@ -160,7 +170,7 @@ void opcontrol() {
 			pros::delay(500);
 		}
 
-		if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)){
+		if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)){
 			blockerTrue = !blockerTrue;
 			blockerDeploy(blockerTrue);
 			pros::delay(500);

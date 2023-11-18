@@ -18,7 +18,10 @@ void setDriveMotors(){
     setDrive(leftJoystick, rightJoystick);
 }
 
-void turn(bool dir){
-    leftSide.move(-127);
-    rightSide.move(127);
+void turn(float lowerbound, float upperbound, int leftpower){
+    while(inertial.get_yaw() > lowerbound && inertial.get_yaw() < upperbound){
+        leftSide.move_absolute(50, leftpower);
+        rightSide.move_absolute(50, -leftpower);
+        pros::delay(5);
+    }
 }
