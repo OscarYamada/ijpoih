@@ -9,6 +9,11 @@ ASSET(offenseside5_txt);
 ASSET(offenseside6_txt);
 ASSET(offenseside7_txt);
 
+ASSET(defenceside1_txt);
+
+bool wingsTrue = false;
+bool blockerTrue = false;
+
 /**
  * A callback function for LLEMU's center button.
  *
@@ -34,7 +39,7 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate the chassis
-	chassis.setPose(0, 0, 0); // X: -33, Y: 54, Heading: 180
+	chassis.setPose(-33, 54, 180); // X: -33, Y: 54, Heading: 180
 
 	// Set Brake Modes
 	leftSide.set_brake_modes(pros::E_MOTOR_BRAKE_COAST); // Set brake to coast on left side of Drivetrain
@@ -85,38 +90,47 @@ void autonomous() {
 
 	pros::millis(); //set time to 0
 
-	chassis.follow(offenseside1_txt, 3000, 10);
-	chassis.waitUntilDist(70);
-	intakeDeploy(true);
-	pros::delay(1000);
-	wingsDeploy(true);
-
-	chassis.follow(offenseside2_txt, 1000, 15, true);
-	chassis.moveTo(-12, 9, 4.189, 1000);//240
-
-	chassis.follow(offenseside3_txt, 1000, 15, true);
-	wingsDeploy(false);
-	chassis.moveTo(-39, 0, 1.571, 1000);//90
-	chassis.waitUntilDist(10);
-	intakeDeploy(true);
-	pros::delay(1000);
-
-	chassis.follow(offenseside4_txt, 1000, 15, true);
-	chassis.waitUntilDist(30);
-	intakeDeploy(true);
-	pros::delay(1000);
-
-	chassis.follow(offenseside5_txt, 1000, 15, true);
-	chassis.moveTo(-26.586, 28.55, 5.376, 1000);//308
-	chassis.waitUntilDist(5);
-	intakeDeploy(false);
-	pros::delay(1000);
-
-	chassis.follow(offenseside6_txt, 1000, 15, true);
-	chassis.moveTo(-10, 59, 1.571, 1000);//90
-	wingsDeploy(true);
+	// chassis.follow(offenseside1_txt, 3200, 15, true);
+	// pros::delay(1700);
+	// intakeDeploy(true);
+	// pros::delay(1700);
+	// chassis.moveTo(-12, 11, 2.15, 1000);
+	// intakeDeploy(false);
+	// wingsDeploy(true);
+	// chassis.follow(offenseside2_txt, 1500, 10, false);
 	
-	chassis.follow(offenseside7_txt, 1000, 15, true);
+	
+	// pros::millis(); //set time to 0
+	// chassis.follow(offenseside3_txt, 1000, 15, true);
+	// wingsDeploy(false);
+	// chassis.moveTo(-39, 0, 1.571, 1000);//90
+	// chassis.waitUntilDist(10);
+	// intakeDeploy(true);
+	// pros::delay(1000);
+
+	// pros::millis();
+	// chassis.follow(offenseside4_txt, 1000, 15, true);
+	// chassis.waitUntilDist(30);
+	// intakeDeploy(true);
+	// pros::delay(1000);
+
+	// pros::millis();
+	// chassis.follow(offenseside5_txt, 1000, 15, true);
+	// chassis.moveTo(-26.586, 28.55, 5.376, 1000);//308
+	// chassis.waitUntilDist(5);
+	// intakeDeploy(false);
+	// pros::delay(1000);
+
+	// pros::millis();
+	// chassis.follow(offenseside6_txt, 1000, 15, true);
+	// chassis.moveTo(-10, 59, 1.571, 1000);//90
+	// wingsDeploy(true);
+	
+	// chassis.follow(offenseside7_txt, 1000, 15, true);
+
+	wingsDeploy(true);
+	chassis.follow(defenceside1_txt, 10000, 5, true, false);
+
 
 }
 
@@ -140,8 +154,17 @@ void opcontrol() {
 		setIntakeMotors();
 		setCataShoot();
 
-		wingsDeploy(controller.get_digital(pros::E_CONTROLLER_DIGITAL_B));
-		blockerDeploy(controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
+		if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y)){
+			wingsTrue = !wingsTrue;
+			wingsDeploy(wingsTrue);
+			pros::delay(500);
+		}
+
+		if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)){
+			blockerTrue = !blockerTrue;
+			blockerDeploy(blockerTrue);
+			pros::delay(500);
+		}
 
         //2msec Delay for Refresh Rate
         pros::delay(8);

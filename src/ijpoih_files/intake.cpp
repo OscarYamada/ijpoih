@@ -13,20 +13,5 @@ void setIntakeMotors(){
 }
 
 void intakeDeploy(bool dir){
-    intake.tare_position();
-    if(dir){
-        intake.move_absolute(100, 200); // Moves 100 units forward
-        while (!((intake.get_position() < 105) && (intake.get_position() > 95))) {
-            // Continue running this loop as long as the motor is not within +-5 units of its goal
-            pros::delay(2);
-        }
-    }
-    else{
-        intake.move_absolute(-100, 200); // Moves 100 units forward
-        while (!((intake.get_position() < 105) && (intake.get_position() > 95))) {
-            // Continue running this loop as long as the motor is not within +-5 units of its goal
-            pros::delay(2);
-        }
-        
-    }
+    setIntake(-127 * dir);
 }

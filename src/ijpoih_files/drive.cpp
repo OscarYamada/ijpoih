@@ -17,3 +17,8 @@ void setDriveMotors(){
         rightJoystick = 0;
     setDrive(leftJoystick, rightJoystick);
 }
+
+void turn(bool dir){
+    leftSide.move(-127);
+    rightSide.move(127);
+}

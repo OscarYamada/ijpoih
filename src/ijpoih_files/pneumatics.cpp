@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/misc.h"
 // Helper Functions
 
 void wingsDeploy(bool airhigh_w){
