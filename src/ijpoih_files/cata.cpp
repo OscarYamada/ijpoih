@@ -13,11 +13,11 @@ void setCataShoot(){
     }
     else{
         // While Cata rotation sensor is below 60 degrees, it spins
-        if(cata_rot.get_position() < 6000){
+        if(cata_rot.get_position() < 60){
             setCata(0);
         }
         else{
-            setCata(127);
+            setCata(0);
         }
     }
 }

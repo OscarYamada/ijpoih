@@ -83,65 +83,40 @@ void autonomous() {
 	// also, lookahead distance, look into that, but it's probably not
 	// important right now. save it for when we tune auton.
 
-
 	pros::millis(); //set time to 0
 
-	chassis.follow(offenseside1_txt, 2000, 10);
+	chassis.follow(offenseside1_txt, 3000, 10);
+	chassis.waitUntilDist(70);
+	intakeDeploy(true);
+	pros::delay(1000);
+	wingsDeploy(true);
 
-	// Offense Auto (all triball + under hang + enemy matchload)
-	//PATH 1:
-	// chassis.follow(offenseside1_txt, 2100, 5);
+	chassis.follow(offenseside2_txt, 1000, 15, true);
+	chassis.moveTo(-12, 9, 4.189, 1000);//240
 
-	// // intake for grabbing triball
-	// chassis.waitUntilDist(10);
-	// intakeDeploy(true);
+	chassis.follow(offenseside3_txt, 1000, 15, true);
+	wingsDeploy(false);
+	chassis.moveTo(-39, 0, 1.571, 1000);//90
+	chassis.waitUntilDist(10);
+	intakeDeploy(true);
+	pros::delay(1000);
 
-	// // wings open after grabbing first triball
-	// chassis.waitUntilDist(20);
-	// wingsDeploy(true);
+	chassis.follow(offenseside4_txt, 1000, 15, true);
+	chassis.waitUntilDist(30);
+	intakeDeploy(true);
+	pros::delay(1000);
 
-	// // wings close after pushing in first triball
-	// chassis.waitUntilDist(25);
-	// wingsDeploy(false);
+	chassis.follow(offenseside5_txt, 1000, 15, true);
+	chassis.moveTo(-26.586, 28.55, 5.376, 1000);//308
+	chassis.waitUntilDist(5);
+	intakeDeploy(false);
+	pros::delay(1000);
 
-	// //PATH 2:
-	// chassis.follow(offenseside2_txt, 1000, 15, true);
-	// //180 degree turn
-	// chassis.waitUntilDist(10);
-	// chassis.turnTo(-26, 0, 1000, true);
-
-	// //PATH 3:
-	// chassis.follow(offenseside3_txt, 2000, 15);
-	// //intake to pick up triball
-	// chassis.waitUntilDist(10);
-	// intakeDeploy(false);
-	// //intake for putting down triball
-	// chassis.waitUntilDist(20);
-	// intakeDeploy(true);
-	// // add async for grabbing triball underneath the hang
-	// chassis.waitUntilDist(10000);
-	// intakeDeploy(true);
-
-	// //PATH 4:
-	// chassis.follow(offenseside4_txt, 2000, 15, true);
-	// //180 degree turn
-	// chassis.waitUntilDist(10000);
-	// chassis.turnTo(-30, 60, 1000, 200);
-
-	// //PATH 5:
-	// chassis.follow(offenseside5_txt, 2000, 15);
-	// pros::delay(1000);
-	// intakeDeploy(true);
-	// // then it goes 3 into the goal rite
-
-	// //PATH 6:
-	// chassis.follow(offenseside5_txt, 2000, 15, true);
-	// //turn 180 degrees to hang
-	// chassis.turnTo(-10, 60, 1000, 200);
-	// //Touch intake to hang
-	// chassis.follow(offenseside4_txt, 2000, 15);
-
-
+	chassis.follow(offenseside6_txt, 1000, 15, true);
+	chassis.moveTo(-10, 59, 1.571, 1000);//90
+	wingsDeploy(true);
+	
+	chassis.follow(offenseside7_txt, 1000, 15, true);
 
 }
 
@@ -164,6 +139,9 @@ void opcontrol() {
 		setDriveMotors();
 		setIntakeMotors();
 		setCataShoot();
+
+		wingsDeploy(controller.get_digital(pros::E_CONTROLLER_DIGITAL_B));
+		blockerDeploy(controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
 
         //2msec Delay for Refresh Rate
         pros::delay(8);
