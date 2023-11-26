@@ -80,12 +80,7 @@ void opcontrol(void);
  * You can add C++-only headers here
  */
 
-#include "ijpoih_headers/cata.hpp"
-#include "ijpoih_headers/config.hpp"
-#include "ijpoih_headers/drive.hpp"
-#include "ijpoih_headers/intake.hpp"
-#include "ijpoih_headers/pneumatics.hpp"
-#include "ijpoih_headers/startscreen.hpp"
+//add them here
 
 //#include <iostream>
 #endif
